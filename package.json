@@ -1,27 +1,29 @@
 {
-  "name": "csv-table",
+  "name": "katana-csv",
   "version": "0.1.4",
-  "description": "Prints a table out of the pointed CSV file.",
+  "description": "Prints a table out of the pointed CSV file ou stream.",
   "main": "index.js",
   "bin": {
-    "csv-table": "./bin/csv-table"
+    "katana-csv": "./bin/csv-table"
   },
   "scripts": {
     "test": "jshint bin/csv-table lib/*.js test/*.js && nodeunit test/lib.index.test.js"
   },
   "keywords": [
-    "table",
     "csv",
-    "json"
+    "visualization",
   ],
   "repository": {
     "type": "git",
-    "url": "git://github.com/leobalter/csv-table.git"
+    "url": "git://github.com/fth-ship/csv-table.git"
   },
-  "author": "Leo Balter",
-  "license": "MIT",
+  "author": "Kaique da Silva <kaique.developer@gmail.com>",
+  "credits": [
+    "Leo Balter"  
+  ],
+  "license": "BSD",
   "bugs": {
-    "url": "https://github.com/leobalter/csv-table/issues"
+    "url": "https://github.com/fth-ship/csv-table/issues"
   },
   "dependencies": {
     "commander": "2.3.0",
