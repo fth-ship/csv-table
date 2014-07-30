@@ -21,31 +21,32 @@ function helpHandler() {
 }
 csvTable.on('help', helpHandler);
 
-// not enough arguments to act
-if (!csvTable.args.length) {
-  csvTable.help();
+var options = {
+  delimiter: csvTable.delimiter,
+  columns: !!csvTable.columns,
+  trim: !!csvTable.trim,
+  ltrim: !!csvTable.ltrim,
+  rtrim: !!csvTable.rtrim,
+  skip_empty_lines: !!csvTable.skip
+};
+
+options.quote = (options.quote ? csvTable.quote : null);
+options.comment = (options.comment ? csvTable.comment : null);
+options.escape = (options.comment ? csvTable.escape : null);
+options.rowDelimiter = (options.rowDelimiter ? csvTable.rowDelimiter : null);
+
+function csvParserHandler(err, result) {
+  if (!err) {
+    result.show();
+  }
 }
 
 function forEachHandler(csvFile) {
-  var options = {
-    delimiter: csvTable.delimiter,
-    columns: !!csvTable.columns,
-    trim: !!csvTable.trim,
-    ltrim: !!csvTable.ltrim,
-    rtrim: !!csvTable.rtrim,
-    skip_empty_lines: !!csvTable.skip
-  };
-
-  options.quote = (options.quote ? csvTable.quote : null);
-  options.comment = (options.comment ? csvTable.comment : null);
-  options.escape = (options.comment ? csvTable.escape : null);
-  options.rowDelimiter = (options.rowDelimiter ? csvTable.rowDelimiter : null);
-
-  function csvParserHandler(err, result) {
-    if (!err) {
-      result.show();
-    }
-  }
   csvParser(csvFile, options, csvParserHandler);
 }
 csvTable.args.forEach(forEachHandler);
+
+// not enough arguments to act
+if (!csvTable.args.length) {
+ csvParser(options, csvParserHandler);
+}
